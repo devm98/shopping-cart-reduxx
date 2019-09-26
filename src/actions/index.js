@@ -39,10 +39,10 @@ const reducedQuantity = id => {
     id
   };
 };
-const findIndexProduct = id => {
+const findIndexProduct = pro => {
   return {
     type: types.FINDIDX,
-    id
+    pro
   };
 };
 export {

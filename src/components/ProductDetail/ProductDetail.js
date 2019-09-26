@@ -7,15 +7,23 @@ const ProductDetail = props => {
   const handleAddToCart = () => {
     props.addToCart(
       {
-        id: props.product_details.id,
-        name: props.product_details.name,
-        src: props.product_details.src,
-        price: `${props.product_details.price}.000`,
+        id: props.products[findMe()].id,
+        name: props.products[findMe()].name,
+        src: props.products[findMe()].src,
+        price: `${props.products[findMe()].price}.000`,
         quantity: 1
       },
-      props.id
+      props.products[findMe()].id
     );
   };
+  const findMe = () => {
+    const id = props.match.params.id;
+    const index = props.products.findIndex(item => {
+      return item.id === parseInt(id);
+    });
+    return index;
+  };
+
   return (
     <div>
       <Banner title="Product Detail" />
@@ -25,15 +33,15 @@ const ProductDetail = props => {
             <div className="single-prd-item">
               <img
                 className="img-fluid"
-                src={props.product_details.src}
+                src={props.products[findMe()].src}
                 alt=""
               />
             </div>
           </div>
           <div className="col-lg-5 offset-lg-1 d-flex align-items-center">
             <div className="s_product_text">
-              <h3>{props.product_details.name}</h3>
-              <h2>{props.product_details.price}.000</h2>
+              <h3>{props.products[findMe()].name}</h3>
+              <h2>{props.products[findMe()].price}.000</h2>
               <ul className="list"></ul>
               <p>
                 Mill Oil is an innovative oil filled radiator with the most
@@ -65,10 +73,9 @@ const ProductDetail = props => {
   );
 };
 
-const mapStateToProps = (state, owlProps) => {
-  const idx = owlProps.match.params.id;
+const mapStateToProps = state => {
   return {
-    product_details: state.products[idx]
+    products: state.products
   };
 };
 

@@ -1,20 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Banner() {
+export default function Banner(props) {
   return (
     <section className="blog-banner-area" id="category">
       <div className="container h-100">
         <div className="blog-banner">
           <div className="text-center">
-            <h1>Shop Category</h1>
+            <h1>{props.title}</h1>
             <nav aria-label="breadcrumb" className="banner-breadcrumb">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">
                   <NavLink to="#">Home</NavLink>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
-                  Shop Category
+                  {props.title}
                 </li>
               </ol>
             </nav>

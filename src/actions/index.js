@@ -39,11 +39,18 @@ const reducedQuantity = id => {
     id
   };
 };
+const findIndexProduct = id => {
+  return {
+    type: types.FINDIDX,
+    id
+  };
+};
 export {
   addToCart,
   updateCart,
   removeFromCart,
   defaultState,
   increaseQuantity,
-  reducedQuantity
+  reducedQuantity,
+  findIndexProduct
 };

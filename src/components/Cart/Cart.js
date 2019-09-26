@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import ProductOnCart from "./ProductOnCart";
 import { connect } from "react-redux";
 import * as actions from "./../../actions";
+import Banner from "../Banner";
 const Cart = props => {
   const getTotal = (price, quantity) => {
     return price * quantity;
@@ -19,25 +20,7 @@ const Cart = props => {
   getSubTotal();
   return (
     <div>
-      <section className="blog-banner-area" id="category">
-        <div className="container h-100">
-          <div className="blog-banner">
-            <div className="text-center">
-              <h1>Shopping Cart</h1>
-              <nav aria-label="breadcrumb" className="banner-breadcrumb">
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <NavLink to="#">Home</NavLink>
-                  </li>
-                  <li className="breadcrumb-item active" aria-current="page">
-                    Shopping Cart
-                  </li>
-                </ol>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Banner title="Shopping Cart" />
       {/* ================ end banner area ================= */}
       {/*================Cart Area =================*/}
       <section className="cart_area">

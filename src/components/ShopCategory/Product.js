@@ -43,7 +43,7 @@ const Product = props => {
         <div className="card-body">
           <p>{props.type}</p>
           <h4 className="card-product__title">
-            <NavLink to="#">{props.name}</NavLink>
+            <NavLink to={`/productDetail/${props.id}`}>{props.name}</NavLink>
           </h4>
           <p className="card-product__price">{props.price}</p>
         </div>
@@ -59,8 +59,12 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-
+const mapStateToProps = state => {
+  return {
+    product: state.products
+  };
+};
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Product);

@@ -6,11 +6,11 @@ import { connect } from "react-redux";
 const Category = props => {
   return (
     <>
-      <Banner />
+      <Banner title="Shop Category" />
       <section className="section-margin--small mb-5">
         <div className="container">
           <div className="row">
-            <div className="col-xl-12 col-lg-8 col-md-7">
+            <div className="col-12 col-lg-12">
               <Control />
               <section className="lattest-product-area pb-40 category-list">
                 <div className="row">

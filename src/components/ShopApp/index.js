@@ -12,7 +12,7 @@ const ShopApp = () => {
       <div>
         <Navbar />
         <Route path="/" exact component={Category} />
-        <Route path="/productDetail/" component={ProductDetail} />
+        <Route path="/productDetail/:id" component={ProductDetail} />
         <Route path="/cart/" component={Cart} />
         <Footer />
       </div>

@@ -35,15 +35,7 @@ const Navbar = props => {
                       Shop Category
                     </NavLink>
                   </li>
-                  <li className="nav-item">
-                    <NavLink
-                      to="/productDetail"
-                      className="nav-link "
-                      role="button"
-                    >
-                      Product Details
-                    </NavLink>
-                  </li>
+
                   <li className="nav-item">
                     <NavLink
                       onClick={props.defaultState}

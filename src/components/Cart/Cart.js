@@ -98,7 +98,11 @@ const Cart = props => {
                 </table>
               ) : (
                 <div className="text-center">
-                  <NavLink className="button button-header" to="/">
+                  <NavLink
+                    onClick={props.defaultState()}
+                    className="button button-header"
+                    to="/"
+                  >
                     Buy Now
                   </NavLink>
                 </div>
@@ -121,6 +125,9 @@ const mapDispatchToProps = dispatch => {
   return {
     updateCart: () => {
       dispatch(actions.updateCart());
+    },
+    defaultState: () => {
+      dispatch(actions.defaultState());
     }
   };
 };

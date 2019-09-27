@@ -1,19 +1,31 @@
 import React from "react";
-import Cart from "../Cart/Cart";
-import Category from "../ShopCategory/Category";
-import ProductDetail from "../ProductDetail/ProductDetail";
 import Navbar from "./../Navbar";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Footer from "./../Footer";
+import routes from "./../../Routes";
 
 const ShopApp = () => {
+  const showMenus = routes => {
+    let result = null;
+    if (routes.length > 0) {
+      result = routes.map((item, index) => {
+        return (
+          <Route
+            key={index}
+            path={item.path}
+            exact={item.exact}
+            component={item.main}
+          />
+        );
+      });
+    }
+    return result;
+  };
   return (
     <BrowserRouter>
       <div>
         <Navbar />
-        <Route path="/" exact component={Category} />
-        <Route path="/productDetail/:id" component={ProductDetail} />
-        <Route path="/cart/" component={Cart} />
+        <Switch>{showMenus(routes)}</Switch>
         <Footer />
       </div>
     </BrowserRouter>

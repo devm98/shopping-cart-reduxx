@@ -1,7 +1,40 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Route, NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./../../actions";
+
+const menus = [
+  {
+    name: "Shop Category",
+    to: "/",
+    exact: true
+  },
+  {
+    name: "Shopping Cart",
+    to: "/cart",
+    exact: false
+  }
+];
+
+const MenuLink = ({ label, to, activeOnlyWhenExact, action }) => {
+  return (
+    <Route
+      path={to}
+      exact={activeOnlyWhenExact}
+      children={({ match }) => {
+        let active = match ? "active abc" : "";
+        return (
+          <li className={`nav-item ${active}`}>
+            <Link onClick={action} to={to} className="nav-link " role="button">
+              {label}
+            </Link>
+          </li>
+        );
+      }}
+    />
+  );
+};
+
 const Navbar = props => {
   return (
     <>
@@ -30,22 +63,17 @@ const Navbar = props => {
                 id="navbarSupportedContent"
               >
                 <ul className="nav navbar-nav menu_nav ml-auto mr-auto">
-                  <li className="nav-item">
-                    <NavLink exact to="/" className="nav-link " role="button">
-                      Shop Category
-                    </NavLink>
-                  </li>
-
-                  <li className="nav-item">
-                    <NavLink
-                      onClick={props.defaultState}
-                      to="/cart"
-                      className="nav-link "
-                      role="button"
-                    >
-                      Shopping Cart
-                    </NavLink>
-                  </li>
+                  {menus.map((item, index) => {
+                    return (
+                      <MenuLink
+                        key={index}
+                        label={item.name}
+                        to={item.to}
+                        activeOnlyWhenExact={item.exact}
+                        action={props.defaultState}
+                      />
+                    );
+                  })}
                 </ul>
                 <ul className="nav-shop">
                   <li onClick={props.defaultState} className="nav-item">

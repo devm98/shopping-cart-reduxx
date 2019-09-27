@@ -84,12 +84,14 @@ const Cart = props => {
                       <td />
                       <td />
                       <td>
-                        <button
-                          style={{ width: "100px", borderRadius: "30px" }}
-                          className="btn btn-primary"
-                        >
-                          Apply
-                        </button>
+                        <NavLink to="/checkout">
+                          <button
+                            style={{ width: "100px", borderRadius: "30px" }}
+                            className="btn btn-primary"
+                          >
+                            Apply
+                          </button>
+                        </NavLink>
                       </td>
                     </tr>
                   </tbody>

@@ -5,19 +5,6 @@ import { connect } from "react-redux";
 import * as actions from "./../../actions";
 import Banner from "../Banner";
 const Cart = props => {
-  const getTotal = (price, quantity) => {
-    return price * quantity;
-  };
-
-  const getSubTotal = () => {
-    let total = 0;
-    for (let i = 0; i < props.carts.length; i++) {
-      total += props.carts[i].quantity * props.carts[i].price;
-    }
-    return total;
-  };
-
-  getSubTotal();
   return (
     <div>
       <Banner title="Shopping Cart" />
@@ -65,7 +52,7 @@ const Cart = props => {
                           srcImg={item.src}
                           price={item.price}
                           quantity={item.quantity}
-                          total={getTotal(item.price, item.quantity)}
+                          total={item.price * item.quantity}
                         />
                       );
                     })}
@@ -76,7 +63,7 @@ const Cart = props => {
                         <h5>Subtotal</h5>
                       </td>
                       <td className="text-center">
-                        <h5>{getSubTotal()}.000</h5>
+                        <h5>{actions.getSubTotal(props.carts)}.000</h5>
                       </td>
                     </tr>
                     <tr className="bottom_button">

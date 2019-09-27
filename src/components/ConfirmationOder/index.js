@@ -1,7 +1,8 @@
 import React from "react";
 import Banner from "../Banner";
-
-const ConfirmationmOrder = () => {
+import { connect } from "react-redux";
+import * as actions from "./../../actions";
+const ConfirmationmOrder = props => {
   return (
     <div>
       <Banner title="Order Confirmation" />
@@ -17,12 +18,12 @@ const ConfirmationmOrder = () => {
                 <table className="order-rable">
                   <tbody>
                     <tr>
-                      <td>Order number</td>
-                      <td>: 60235</td>
+                      <td>Customer name:</td>
+                      <td>{props.orders.fullName}</td>
                     </tr>
                     <tr>
-                      <td>Date</td>
-                      <td>: Oct 03, 2017</td>
+                      <td>Phone: </td>
+                      <td>{props.orders.phoneNum}</td>
                     </tr>
                     <tr>
                       <td>Total</td>
@@ -87,6 +88,7 @@ const ConfirmationmOrder = () => {
               </div>
             </div>
           </div>
+
           <div className="order_details_table">
             <h2>Order Details</h2>
             <div className="table-responsive">
@@ -99,70 +101,41 @@ const ConfirmationmOrder = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      <p>Pixelstore fresh Blackberry</p>
-                    </td>
-                    <td>
-                      <h5>x 02</h5>
-                    </td>
-                    <td>
-                      <p>$720.00</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>Pixelstore fresh Blackberry</p>
-                    </td>
-                    <td>
-                      <h5>x 02</h5>
-                    </td>
-                    <td>
-                      <p>$720.00</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>Pixelstore fresh Blackberry</p>
-                    </td>
-                    <td>
-                      <h5>x 02</h5>
-                    </td>
-                    <td>
-                      <p>$720.00</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h4>Subtotal</h4>
-                    </td>
-                    <td>
-                      <h5 />
-                    </td>
-                    <td>
-                      <p>$2160.00</p>
-                    </td>
-                  </tr>
+                  {props.carts.map(item => {
+                    return (
+                      <tr key={item.id}>
+                        <td>
+                          <p>{item.name}</p>
+                        </td>
+                        <td>
+                          <h5>x {item.quantity}</h5>
+                        </td>
+                        <td>
+                          <p>{item.price}.000</p>
+                        </td>
+                      </tr>
+                    );
+                  })}
                   <tr>
                     <td>
                       <h4>Shipping</h4>
                     </td>
+                    <td></td>
                     <td>
-                      <h5 />
-                    </td>
-                    <td>
-                      <p>Flat rate: $50.00</p>
+                      <p>{actions.discountOrder(props.carts)}</p>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Total</h4>
                     </td>
+                    <td></td>
                     <td>
-                      <h5 />
-                    </td>
-                    <td>
-                      <h4>$2210.00</h4>
+                      <h4>
+                        {actions.getSubTotal(props.carts) +
+                          parseInt(actions.discountOrder(props.carts))}
+                        .000
+                      </h4>
                     </td>
                   </tr>
                 </tbody>
@@ -174,4 +147,15 @@ const ConfirmationmOrder = () => {
     </div>
   );
 };
-export default ConfirmationmOrder;
+
+const mapStateToProps = state => {
+  return {
+    carts: state.carts.carts,
+    orders: state.orders
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(ConfirmationmOrder);

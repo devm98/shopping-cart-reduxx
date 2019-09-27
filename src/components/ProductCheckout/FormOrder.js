@@ -1,136 +1,122 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "./../../actions";
 
-const FormOrder = () => {
+const FormOrder = props => {
+  const changeValue = event => {
+    props.changeValue({ [event.target.name]: event.target.value });
+  };
+
+  console.log(props.orders);
   return (
     <div className="col-lg-8">
       <h3>Billing Details</h3>
-      <form
-        className="row contact_form"
-        action="#"
-        method="post"
-        noValidate="novalidate"
-      >
+      <form className="row contact_form">
         <div className="col-md-6 form-group p_star">
-          <input type="text" className="form-control" id="first" name="name" />
-          <span className="placeholder" data-placeholder="First name" />
-        </div>
-        <div className="col-md-6 form-group p_star">
-          <input type="text" className="form-control" id="last" name="name" />
-          <span className="placeholder" data-placeholder="Last name" />
-        </div>
-        <div className="col-md-12 form-group">
+          <label>Full name:</label>
           <input
-            type="text"
             className="form-control"
-            id="company"
-            name="company"
-            placeholder="Company name"
+            type="text"
+            name="name"
+            onChange={changeValue}
+            value={props.orders.name}
           />
         </div>
         <div className="col-md-6 form-group p_star">
+          <label>Phone:</label>
           <input
-            type="text"
             className="form-control"
-            id="number"
-            name="number"
+            type="phone"
+            name="phoneNum"
+            onChange={changeValue}
+            value={props.orders.phone}
           />
-          <span className="placeholder" data-placeholder="Phone number" />
         </div>
-        <div className="col-md-6 form-group p_star">
-          <input
-            type="text"
-            className="form-control"
-            id="email"
-            name="compemailany"
-          />
-          <span className="placeholder" data-placeholder="Email Address" />
-        </div>
-        <div className="col-md-12 form-group p_star">
-          <select className="country_select" style={{ display: "none" }}>
-            <option value={1}>Country</option>
-            <option value={2}>Country</option>
-            <option value={4}>Country</option>
+
+        {/* <div className="col-md-12 form-group p_star">
+          <label>Province/city:</label>
+          <select
+            name="country"
+            onChange={changeValue}
+            value={props.orders.country}
+          >
+            <option value={1}>Ho Chi Minh</option>
+            <option value={2}>Ha Noi</option>
+            <option value={3}>An Giang</option>
           </select>
-          <div className="nice-select country_select" tabIndex={0}>
-            <span className="current">Country</span>
-            <ul className="list">
-              <li data-value={1} className="option selected">
-                Country
-              </li>
-              <li data-value={2} className="option">
-                Country
-              </li>
-              <li data-value={4} className="option">
-                Country
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="col-md-12 form-group p_star">
-          <input type="text" className="form-control" id="add1" name="add1" />
-          <span className="placeholder" data-placeholder="Address line 01" />
-        </div>
-        <div className="col-md-12 form-group p_star">
-          <input type="text" className="form-control" id="add2" name="add2" />
-          <span className="placeholder" data-placeholder="Address line 02" />
-        </div>
-        <div className="col-md-12 form-group p_star">
-          <input type="text" className="form-control" id="city" name="city" />
-          <span className="placeholder" data-placeholder="Town/City" />
-        </div>
-        <div className="col-md-12 form-group p_star">
-          <select className="country_select" style={{ display: "none" }}>
-            <option value={1}>District</option>
-            <option value={2}>District</option>
-            <option value={4}>District</option>
+        </div> */}
+
+        {/* <div className="col-md-12 form-group p_star">
+          <label>District: </label>
+          <select
+            className="country_select"
+            name="district"
+            onChange={changeValue}
+            value={props.orders.district}
+          >
+            <option value={1}>District 1</option>
+            <option value={2}>District 2</option>
+            <option value={4}>District 3</option>
           </select>
-          <div className="nice-select country_select" tabIndex={0}>
-            <span className="current">District</span>
-            <ul className="list">
-              <li data-value={1} className="option selected">
-                District
-              </li>
-              <li data-value={2} className="option">
-                District
-              </li>
-              <li data-value={4} className="option">
-                District
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="col-md-12 form-group">
-          <input
-            type="text"
-            className="form-control"
-            id="zip"
-            name="zip"
-            placeholder="Postcode/ZIP"
-          />
-        </div>
-        <div className="col-md-12 form-group">
-          <div className="creat_account">
-            <input type="checkbox" id="f-option2" name="selector" />
-            <label htmlFor="f-option2">Create an account?</label>
-          </div>
-        </div>
-        <div className="col-md-12 form-group mb-0">
-          <div className="creat_account">
-            <h3>Shipping Details</h3>
-            <input type="checkbox" id="f-option3" name="selector" />
-            <label htmlFor="f-option3">Ship to a different address?</label>
-          </div>
+        </div> */}
+
+        {/* <div className="col-md-12 form-group p_star">
+          <label>Address: </label>
           <textarea
             className="form-control"
-            name="message"
-            id="message"
-            rows={1}
-            placeholder="Order Notes"
-            defaultValue={""}
+            name="address"
+            onChange={changeValue}
+            value={props.orders.address}
           />
-        </div>
+        </div> */}
+
+        {/* <div className="creat_account col-md-6 d-flex align-items-center">
+          <input
+            type="checkbox"
+            id="f-option2"
+            name="chbCreateAcc"
+            onChange={changeValue}
+            value={props.orders.chbCreateAcc}
+            checked={props.orders.chbCreateAcc}
+          />
+          <label className="m-0 ml-2" htmlFor="f-option2">
+            Create an account?
+          </label>
+        </div> */}
+
+        {/* <div className="col-md-6 form-group p_star">
+          <label>Password:</label>
+          <input
+            className="form-control"
+            name="password"
+            type="password"
+            onChange={changeValue}
+            value={props.orders.password}
+          />
+        </div> */}
       </form>
     </div>
   );
 };
-export default FormOrder;
+
+const mapStateToProps = state => {
+  return {
+    orders: state.orders
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeValue: ob => {
+      dispatch(actions.changeValue(ob));
+    },
+    submitOrder: () => {
+      dispatch(actions.submitOrder());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FormOrder);

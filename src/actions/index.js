@@ -45,6 +45,43 @@ const findIndexProduct = pro => {
     pro
   };
 };
+
+const changeValue = ob => {
+  return {
+    type: types.CHANGEVL,
+    ob
+  };
+};
+const submitOrder = () => {
+  return {
+    type: types.SUBMIT
+  };
+};
+
+const getSubTotal = carts => {
+  let total = 0;
+  for (let i = 0; i < carts.length; i++) {
+    total += carts[i].quantity * carts[i].price;
+  }
+  return total;
+};
+const discountOrder = carts => {
+  if (getSubTotal(carts) < 100) {
+    return "11.000";
+  }
+  return "Freeship";
+};
+const getTotal = carts => {
+  let shiped = 0;
+  let total = 0;
+  if (discountOrder(carts) === "Freeship") {
+    shiped = 0;
+  } else {
+    shiped = parseInt("11.000");
+  }
+  total = getSubTotal(carts) + shiped;
+  return total;
+};
 export {
   addToCart,
   updateCart,
@@ -52,5 +89,10 @@ export {
   defaultState,
   increaseQuantity,
   reducedQuantity,
-  findIndexProduct
+  findIndexProduct,
+  getSubTotal,
+  discountOrder,
+  getTotal,
+  changeValue,
+  submitOrder
 };

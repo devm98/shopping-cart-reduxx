@@ -56,14 +56,10 @@ const ProductDetail = props => {
               >
                 Add to cart
               </NavLink>
-              <div className="card_area d-flex align-items-center">
-                <NavLink className="icon_btn" to="#">
-                  <i className="lnr lnr lnr-diamond" />
-                </NavLink>
-                <NavLink className="icon_btn" to="#">
-                  <i className="lnr lnr lnr-heart" />
-                </NavLink>
-              </div>
+
+              <NavLink className="button ml-3" to="/">
+                Back to buy
+              </NavLink>
             </div>
           </div>
         </div>

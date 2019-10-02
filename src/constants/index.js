@@ -7,6 +7,7 @@ const REDUCED = "REDUCED";
 const FINDIDX = "FINDIDX";
 const CHANGEVL = "CHANGEVL";
 const SUBMIT = "SUBMIT";
+const CLEAR = "CLEAR";
 
 export {
   ADD_CART,
@@ -17,5 +18,6 @@ export {
   REDUCED,
   FINDIDX,
   CHANGEVL,
-  SUBMIT
+  SUBMIT,
+  CLEAR
 };

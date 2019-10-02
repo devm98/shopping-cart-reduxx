@@ -3,9 +3,6 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./../../actions";
 const OrderInfo = props => {
-  const submitOrder = () => {
-    props.submitOrder();
-  };
   return (
     <div className="col-lg-4">
       <div className="order_box">
@@ -47,45 +44,6 @@ const OrderInfo = props => {
             </span>
           </li>
         </ul>
-        <div className="payment_item">
-          <div className="radion_btn">
-            <input type="radio" id="f-option5" name="selector" />
-            <label htmlFor="f-option5">Check payments</label>
-            <div className="check" />
-          </div>
-          <p>
-            Please send a check to Store Name, Store Street, Store Town, Store
-            State / County, Store Postcode.
-          </p>
-        </div>
-        <div className="payment_item active">
-          <div className="radion_btn">
-            <input type="radio" id="f-option6" name="selector" />
-            <label htmlFor="f-option6">Paypal </label>
-            <img src="img/product/card.jpg" alt="" />
-            <div className="check" />
-          </div>
-          <p>
-            Pay via PayPal; you can pay with your credit card if you don’t have
-            a PayPal account.
-          </p>
-        </div>
-        <div className="creat_account d-flex align-items-center">
-          <input type="checkbox" id="f-option4" name="selector" />
-          <label htmlFor="f-option4" className="m-0">
-            I’ve read and accept the{" "}
-            <NavLink to="#">terms &amp; conditions*</NavLink>
-          </label>
-        </div>
-        <div className="text-center">
-          <NavLink
-            onClick={submitOrder}
-            className="button button-paypal"
-            to="/order"
-          >
-            Proceed to Paypal
-          </NavLink>
-        </div>
       </div>
     </div>
   );
@@ -96,14 +54,8 @@ const mapStateToProps = state => {
     carts: state.carts.carts
   };
 };
-const mapDispatchToProps = dispatch => {
-  return {
-    submitOrder: () => {
-      dispatch(actions.submitOrder());
-    }
-  };
-};
+
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(OrderInfo);

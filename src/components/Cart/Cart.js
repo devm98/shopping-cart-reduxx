@@ -67,7 +67,18 @@ const Cart = props => {
                       </td>
                     </tr>
                     <tr className="bottom_button">
-                      <td></td>
+                      <td>
+                        <NavLink
+                          style={{
+                            border: "1px solid blue",
+                            padding: "7px 20px"
+                          }}
+                          className="button"
+                          to="/"
+                        >
+                          <i class="fas fa-arrow-left"></i> Back to buy
+                        </NavLink>
+                      </td>
                       <td />
                       <td />
                       <td>

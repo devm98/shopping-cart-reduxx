@@ -46,15 +46,15 @@ const findIndexProduct = pro => {
   };
 };
 
-const changeValue = ob => {
+const setStateToReducer = vl => {
   return {
     type: types.CHANGEVL,
-    ob
+    vl
   };
 };
-const submitOrder = () => {
+const clearCart = () => {
   return {
-    type: types.SUBMIT
+    type: types.CLEAR
   };
 };
 
@@ -93,6 +93,6 @@ export {
   getSubTotal,
   discountOrder,
   getTotal,
-  changeValue,
-  submitOrder
+  setStateToReducer,
+  clearCart
 };

@@ -1,8 +1,12 @@
 import React from "react";
 import Banner from "../Banner";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import * as actions from "./../../actions";
 const ConfirmationmOrder = props => {
+  const clearCart = () => {
+    props.clearCart();
+  };
   return (
     <div>
       <Banner title="Order Confirmation" />
@@ -12,83 +16,36 @@ const ConfirmationmOrder = props => {
             Thank you. Your order has been received.
           </p>
           <div className="row mb-5">
-            <div className="col-md-6 col-xl-4 mb-4 mb-xl-0">
+            <div className="col-md-12 col-xl-12 mb-4 mb-xl-0">
               <div className="confirmation-card">
                 <h3 className="billing-title">Order Info</h3>
                 <table className="order-rable">
                   <tbody>
                     <tr>
-                      <td>Customer name:</td>
-                      <td>{props.orders.fullName}</td>
+                      <td>Customer Name:</td>
+                      <td>{props.orders.txtName}</td>
                     </tr>
                     <tr>
                       <td>Phone: </td>
-                      <td>{props.orders.phoneNum}</td>
+                      <td>{props.orders.txtPhone}</td>
                     </tr>
                     <tr>
-                      <td>Total</td>
-                      <td>: USD 2210</td>
+                      <td>City: </td>
+                      <td>{props.orders.txtCity}</td>
                     </tr>
                     <tr>
-                      <td>Payment method</td>
-                      <td>: Check payments</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div className="col-md-6 col-xl-4 mb-4 mb-xl-0">
-              <div className="confirmation-card">
-                <h3 className="billing-title">Billing Address</h3>
-                <table className="order-rable">
-                  <tbody>
-                    <tr>
-                      <td>Street</td>
-                      <td>: 56/8 panthapath</td>
+                      <td>District: </td>
+                      <td>{props.orders.txtDistrict}</td>
                     </tr>
                     <tr>
-                      <td>City</td>
-                      <td>: Dhaka</td>
-                    </tr>
-                    <tr>
-                      <td>Country</td>
-                      <td>: Bangladesh</td>
-                    </tr>
-                    <tr>
-                      <td>Postcode</td>
-                      <td>: 1205</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div className="col-md-6 col-xl-4 mb-4 mb-xl-0">
-              <div className="confirmation-card">
-                <h3 className="billing-title">Shipping Address</h3>
-                <table className="order-rable">
-                  <tbody>
-                    <tr>
-                      <td>Street</td>
-                      <td>: 56/8 panthapath</td>
-                    </tr>
-                    <tr>
-                      <td>City</td>
-                      <td>: Dhaka</td>
-                    </tr>
-                    <tr>
-                      <td>Country</td>
-                      <td>: Bangladesh</td>
-                    </tr>
-                    <tr>
-                      <td>Postcode</td>
-                      <td>: 1205</td>
+                      <td>Address: </td>
+                      <td>{props.orders.txtAddress}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-
           <div className="order_details_table">
             <h2>Order Details</h2>
             <div className="table-responsive">
@@ -111,7 +68,7 @@ const ConfirmationmOrder = props => {
                           <h5>x {item.quantity}</h5>
                         </td>
                         <td>
-                          <p>{item.price}.000</p>
+                          <p>{item.price * item.quantity}</p>
                         </td>
                       </tr>
                     );
@@ -132,8 +89,7 @@ const ConfirmationmOrder = props => {
                     <td></td>
                     <td>
                       <h4>
-                        {actions.getSubTotal(props.carts) +
-                          parseInt(actions.discountOrder(props.carts))}
+                        {actions.getTotal(props.carts)}
                         .000
                       </h4>
                     </td>
@@ -141,6 +97,18 @@ const ConfirmationmOrder = props => {
                 </tbody>
               </table>
             </div>
+          </div>
+          <div>
+            <button
+              style={{ padding: 0 }}
+              onClick={clearCart}
+              className="btn btn-info my-3"
+              type="submit"
+            >
+              <NavLink style={{ padding: "7px 20px", color: "white" }} to="/">
+                Back to buy
+              </NavLink>
+            </button>
           </div>
         </div>
       </section>
@@ -154,8 +122,14 @@ const mapStateToProps = state => {
     orders: state.orders
   };
 };
-
+const mapDispatchToProps = dispatch => {
+  return {
+    clearCart: () => {
+      dispatch(actions.clearCart());
+    }
+  };
+};
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(ConfirmationmOrder);

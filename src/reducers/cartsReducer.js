@@ -57,6 +57,11 @@ const myReducer = (state = initState, action) => {
         ...state,
         carts: newCart4
       };
+    case types.CLEAR:
+      return {
+        ...state,
+        carts: []
+      };
     default:
       return state;
   }

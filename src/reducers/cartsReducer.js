@@ -1,17 +1,7 @@
 import * as types from "../constants";
 
-// import * as types from "../../constants";
-
 const initState = {
-  carts: [
-    {
-      id: 4,
-      name: "F-22 Raptor T-Shirt In White",
-      src: "https://k300.vn/upload/images/2019/T7/5-AK/T1024-5.jpg",
-      price: 20,
-      quantity: 1
-    }
-  ],
+  carts: [],
   show: false
 };
 
@@ -66,6 +56,11 @@ const myReducer = (state = initState, action) => {
       return {
         ...state,
         carts: newCart4
+      };
+    case types.CLEAR:
+      return {
+        ...state,
+        carts: []
       };
     default:
       return state;

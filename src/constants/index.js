@@ -5,6 +5,9 @@ const DEFAULT = "DEFAULT";
 const INCREASE = "INCREASE";
 const REDUCED = "REDUCED";
 const FINDIDX = "FINDIDX";
+const CHANGEVL = "CHANGEVL";
+const SUBMIT = "SUBMIT";
+const CLEAR = "CLEAR";
 
 export {
   ADD_CART,
@@ -13,5 +16,8 @@ export {
   DEFAULT,
   INCREASE,
   REDUCED,
-  FINDIDX
+  FINDIDX,
+  CHANGEVL,
+  SUBMIT,
+  CLEAR
 };
